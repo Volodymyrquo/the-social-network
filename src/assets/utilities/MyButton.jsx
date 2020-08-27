@@ -21,7 +21,7 @@ const choiseButton = () => {
        </Button>
  
  case 'secondary':
-    return   <Button variant="contained" color="secondary">
+    return   <Button onClick={() => {alert('Hey, how are you')}} variant="contained" color="secondary">
          {props.content}
        </Button>
      

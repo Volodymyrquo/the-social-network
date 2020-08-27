@@ -21,26 +21,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Dialogs = () => {
+const Dialogs = (props) => {
   const classes = useStyles();
 
-  const dialogsData = [
-    { id: 1, name: "Andrew", photo: 573722 },
-    { id: 2, name: "Veronica", photo: 793535 },
-    { id: 3, name: "Peter", photo: 201065 },
-    { id: 4, name: "Jessica", photo: 159213 },
-    { id: 5, name: "Paula", photo: 1252081 },
-  ];
+  
 
-  const messagesData = [
-    { id: 1, message: "Hi, how are you" },
-    { id: 2, message: "Are you ok" },
-    { id: 3, message: "Hi everyone" },
-    { id: 4, message: "Yo yo yo" },
-    { id: 5, message: "Uhooo" },
-  ];
-
-  const dialogsElements = dialogsData.map(item => <DialogItem
+  const dialogsElements = props.state.dialogs.map(item => <DialogItem
       key={item.key}
       name={item.name}
       id={item.id}
@@ -48,7 +34,7 @@ const Dialogs = () => {
     />
   )
 
-const messagesElements = messagesData.map( item => <Typography key={item.id} className={classes.typography}>
+const messagesElements = props.state.messages.map( item => <Typography key={item.id} className={classes.typography}>
     {item.message}
   </Typography>
 )

@@ -1,31 +1,38 @@
-import React from 'react';
-import './App.css';
-import Header from './components/header/Header';
-import Profile from './components/profile/Profile';
-import Dialogs from './components/dialogs/Dialogs';
-import Settings from './components/settings/Settings';
-import News from './components/news/News';
-import Musik from './components/musik/Musik';
-import Users from './components/users/Users';
-import { Route, BrowserRouter } from 'react-router-dom';
+import React from "react";
+import "./App.css";
+import Header from "./components/header/Header";
+import Profile from "./components/profile/Profile";
+import Dialogs from "./components/dialogs/Dialogs";
+import Settings from "./components/settings/Settings";
+import News from "./components/news/News";
+import Musik from "./components/musik/Musik";
+import Users from "./components/users/Users";
+import { Route } from "react-router-dom";
 
-
-
-function App() {
+function App(props) {
   return (
-    <BrowserRouter>
     <div>
-     <Header />
-       
-<Route path="/profile" component={Profile} />
-<Route path="/dialogs" component={Dialogs} />
-<Route path="/news" component={News} />
-<Route path="/musik" component={Musik} />
-<Route path="/users" component={Users} />
-<Route path="/settings" component={Settings} />
-    
+      <Header />
+
+      <Route
+        path="/profile"
+        render={() => (
+          <Profile
+            profilePage={props.state.profilePage}
+            dispatch={props.dispatch}
+            
+          />
+        )}
+      />
+      <Route
+        path="/dialogs"
+        render={() => <Dialogs state={props.state.dialogsPage} />}
+      />
+      <Route path="/news" render={() => <News />} />
+      <Route path="/musik" render={() => <Musik />} />
+      <Route path="/users" render={() => <Users />} />
+      <Route path="/settings" render={() => <Settings />} />
     </div>
-    </BrowserRouter>
   );
 }
 

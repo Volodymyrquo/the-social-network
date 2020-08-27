@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const News = (props) => {
+const Profile = (props) => {
     const classes = useStyles();
    
 
@@ -47,21 +47,26 @@ const News = (props) => {
           className={classes.mainFeaturesPost}
           style={{ backgroundImage: `url(https://source.unsplash.com/random)` }}
         >
+         
           <Container fixed>
             <div className={classes.overlay} />
             <Grid container>
               <Grid item md={6}>
                 <div className={classes.mainFeaturesPostContent}>
-                  
-                  <MyPosts />
+                <ProfileInfo />
+                <MyPosts 
+                posts={props.profilePage.posts}
+                 newPostText={props.profilePage.newPostText}  
+                 dispatch={props.dispatch} 
+                 />
              
                 </div>
               </Grid>
             </Grid>
            
           </Container>
-          <ProfileInfo />
+          
         </Paper>     );
 }
  
-export default News;
+export default Profile;

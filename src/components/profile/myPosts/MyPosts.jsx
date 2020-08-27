@@ -1,53 +1,72 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import MyButton from '../../../assets/utilities/MyButton';
-import Post from './post/Post';
-import TextField from '@material-ui/core/TextField';
-import { Paper } from '@material-ui/core';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Post from "./post/Post";
+import TextField from "@material-ui/core/TextField";
+import { Paper } from "@material-ui/core";
+import Button from '@material-ui/core/Button';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiTextField-root': {
+    "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: '50ch',
+      width: "33vw",
+    },
+    '& > *': {
+      margin: theme.spacing(1),
     },
   },
 }));
 
 const MyPosts = (props) => {
-  
   const classes = useStyles();
-  const postData = [
-    {id:1, post: "Hi, how are you", likesCount: 10},
-    {id:2, post: "It's my first post", likesCount: 15},
-    {id:3, post: "O go go", likesCount: 20},
-]
-    return ( <div>
-    
-     
-       {/*  <textarea cols="50" rows="5" placeholder="Write your post here">
 
-        </textarea> */}
-        <Paper>
-        <form className={classes.root} noValidate autoComplete="off">
-                   <TextField
-          id="my-post"
-          label="My post"
-          defaultValue="Write some post here"
-          variant="outlined"
-          multiline
-          rows={5}
-        />
-         </form>
-         </Paper>
-     
-    
-   
-    <MyButton color="primary" content="submit" />
-   
-    {postData.map(item => <Post message={item.message} key={item.id} />)}
-    </div>
-    );
-}
+  const postsElements = props.posts.map(item => <Post message={item.post} key={item.id} />);
+
+  const newPostElement = React.createRef();
+
+  const addPost = () => {
  
+      props.dispatch({type: 'ADD-POST'});
+ 
+  }
+
+  const onPostChange = () => { 
+    let text = newPostElement.current.value;
+   props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text});
+   
+  }
+
+  return (
+    <div>
+     
+      <Paper className={classes.root}>
+       
+        <form noValidate autoComplete="off" >
+          <TextField
+          
+            id="my-post"
+            label="My post"
+           value={props.newPostText}
+            variant="outlined"
+            multiline
+            rows={5}
+            inputRef={newPostElement}
+          onChange={onPostChange}
+          
+          />
+        </form>
+      </Paper>
+
+      <div className={classes.root}>
+      <Button onClick={addPost} variant="contained" color="secondary">
+         Add post
+       </Button>
+       </div>
+
+      {postsElements}
+    </div>
+  );
+};
+
 export default MyPosts;
