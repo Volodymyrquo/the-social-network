@@ -2,12 +2,12 @@ import React from "react";
 import "./App.css";
 import Header from "./components/header/Header";
 import Profile from "./components/profile/Profile";
-import Dialogs from "./components/dialogs/Dialogs";
 import Settings from "./components/settings/Settings";
 import News from "./components/news/News";
 import Musik from "./components/musik/Musik";
 import Users from "./components/users/Users";
 import { Route } from "react-router-dom";
+import DialogsContainer from "./components/dialogs/DialogsContainer";
 
 function App(props) {
   return (
@@ -16,17 +16,11 @@ function App(props) {
 
       <Route
         path="/profile"
-        render={() => (
-          <Profile
-            profilePage={props.state.profilePage}
-            dispatch={props.dispatch}
-            
-          />
-        )}
+        render={() => (<Profile   />)}
       />
       <Route
         path="/dialogs"
-        render={() => <Dialogs state={props.state.dialogsPage} />}
+        render={() => <DialogsContainer  />}
       />
       <Route path="/news" render={() => <News />} />
       <Route path="/musik" render={() => <Musik />} />

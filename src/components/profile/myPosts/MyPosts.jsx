@@ -4,7 +4,7 @@ import Post from "./post/Post";
 import TextField from "@material-ui/core/TextField";
 import { Paper } from "@material-ui/core";
 import Button from '@material-ui/core/Button';
-
+import {addPostActionCreator, updateNewPostTextActionCreator} from './../../../redux/profile-reducer'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,24 +18,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MyPosts = (props) => {
+
+
+  const MyPosts = (props) => {
+
   const classes = useStyles();
 
   const postsElements = props.posts.map(item => <Post message={item.post} key={item.id} />);
-
-  const newPostElement = React.createRef();
-
-  const addPost = () => {
- 
-      props.dispatch({type: 'ADD-POST'});
- 
-  }
-
-  const onPostChange = () => { 
-    let text = newPostElement.current.value;
-   props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text});
-   
-  }
 
   return (
     <div>
@@ -51,15 +40,15 @@ const MyPosts = (props) => {
             variant="outlined"
             multiline
             rows={5}
-            inputRef={newPostElement}
-          onChange={onPostChange}
+           
+          onChange={(event) => {props.onPostChange(event.target.value)}}
           
           />
         </form>
       </Paper>
 
       <div className={classes.root}>
-      <Button onClick={addPost} variant="contained" color="secondary">
+      <Button onClick={props.addPost} variant="contained" color="secondary">
          Add post
        </Button>
        </div>

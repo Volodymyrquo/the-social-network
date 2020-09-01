@@ -5,10 +5,20 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { List } from "@material-ui/core";
 import DialogItem from "./dialogItem/DialogItem";
+import TextField from "@material-ui/core/TextField";
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    "& .MuiTextField-root": {
+      margin: theme.spacing(1),
+      width: "33vw",
+    },
+    '& > *': {
+      margin: theme.spacing(1),
+      color: theme.palette.text.secondary,
+    },
   },
   paper: {
     padding: theme.spacing(2),
@@ -26,7 +36,7 @@ const Dialogs = (props) => {
 
   
 
-  const dialogsElements = props.state.dialogs.map(item => <DialogItem
+  const dialogsElements = props.dialogs.map(item => <DialogItem
       key={item.key}
       name={item.name}
       id={item.id}
@@ -34,10 +44,11 @@ const Dialogs = (props) => {
     />
   )
 
-const messagesElements = props.state.messages.map( item => <Typography key={item.id} className={classes.typography}>
+const messagesElements = props.messages.map( item => <Typography key={item.id} className={classes.typography}>
     {item.message}
   </Typography>
 )
+
   return (
     <div className={classes.root}>
       <Grid container spacing={2} style={{ margin: "auto" }}>
@@ -49,10 +60,33 @@ const messagesElements = props.state.messages.map( item => <Typography key={item
           </Paper>
         </Grid>
         <Grid item xs={12} sm={8}>
-          <Paper className={classes.paper}>
+          <Paper className={classes.root}>
             {messagesElements}
+           
+       
+       <form noValidate autoComplete="off" >
+         <TextField
+         
+           id="my-message"
+           label="My message"
+          value={props.newMessageBody}
+           variant="outlined"
+           multiline
+           rows={5}
+           onChange={(event) => {props.onNewMessageChange(event.target.value)}}
+           
+         
+         />
+       </form>
+   
+
+     <div className={classes.root}>
+     <Button  onClick={props.onSendMessageClick} variant="contained" color="secondary">
+        send
+      </Button>
+      </div>
           </Paper>
-        </Grid>
+                 </Grid>
       </Grid>
     </div>
   );

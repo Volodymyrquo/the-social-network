@@ -5,8 +5,8 @@ import {
   Grid,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import MyPosts from '../profile/myPosts/MyPosts';
 import ProfileInfo from './profileInfo/ProfileInfo'
+import MyPostsContainer from './myPosts/MyPostsContainer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,11 +54,7 @@ const Profile = (props) => {
               <Grid item md={6}>
                 <div className={classes.mainFeaturesPostContent}>
                 <ProfileInfo />
-                <MyPosts 
-                posts={props.profilePage.posts}
-                 newPostText={props.profilePage.newPostText}  
-                 dispatch={props.dispatch} 
-                 />
+                <MyPostsContainer  store={props.store}  />
              
                 </div>
               </Grid>
