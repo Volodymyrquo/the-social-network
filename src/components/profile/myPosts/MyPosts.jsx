@@ -4,7 +4,6 @@ import Post from "./post/Post";
 import TextField from "@material-ui/core/TextField";
 import { Paper } from "@material-ui/core";
 import Button from '@material-ui/core/Button';
-import {addPostActionCreator, updateNewPostTextActionCreator} from './../../../redux/profile-reducer'
 
 const useStyles = makeStyles((theme) => ({
   root: {

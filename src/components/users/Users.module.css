@@ -1,0 +1,9 @@
+.photo {
+    width: 100px;
+    border-radius: 5%;
+    margin-top: 5px;
+}
+
+.selectedPage {
+    font-weight: bolder;
+}
