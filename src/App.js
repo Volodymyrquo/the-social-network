@@ -1,13 +1,13 @@
 import React from "react";
 import "./App.css";
 import Header from "./components/header/Header";
-import Profile from "./components/profile/Profile";
 import Settings from "./components/settings/Settings";
 import News from "./components/news/News";
 import Musik from "./components/musik/Musik";
 import { Route } from "react-router-dom";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
 import UsersContainer from "./components/users/UsersContainer";
+import ProfileContainer from "./components/profile/ProfileContainer";
 
 function App(props) {
   return (
@@ -15,8 +15,8 @@ function App(props) {
       <Header />
 
       <Route
-        path="/profile"
-        render={() => (<Profile   />)}
+        path="/profile/:userId?"
+        render={() => (<ProfileContainer   />)}
       />
       <Route
         path="/dialogs"

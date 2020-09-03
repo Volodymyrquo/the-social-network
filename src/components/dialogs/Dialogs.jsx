@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
       width: "33vw",
+    
     },
     '& > *': {
       margin: theme.spacing(1),
@@ -50,7 +51,7 @@ const messagesElements = props.messages.map( item => <Typography key={item.id} c
 )
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{marginTop: "60px"}}>
       <Grid container spacing={2} style={{ margin: "auto" }}>
         <Grid item xs={12} sm={4}>
           <Paper className={classes.paper}>

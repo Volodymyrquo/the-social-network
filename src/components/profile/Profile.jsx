@@ -45,7 +45,7 @@ const Profile = (props) => {
     return ( 
 <Paper
           className={classes.mainFeaturesPost}
-          style={{ backgroundImage: `url(https://source.unsplash.com/random)` }}
+          style={{ backgroundImage: `url(https://source.unsplash.com/random)`, marginTop: "60px" }}
         >
          
           <Container fixed>
@@ -53,7 +53,7 @@ const Profile = (props) => {
             <Grid container>
               <Grid item md={6}>
                 <div className={classes.mainFeaturesPostContent}>
-                <ProfileInfo />
+                <ProfileInfo profile={props.profile}/>
                 <MyPostsContainer  store={props.store}  />
              
                 </div>

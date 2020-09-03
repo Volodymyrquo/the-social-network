@@ -10,9 +10,8 @@ import {
   CardContent,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import * as axios from "axios";
-import { useEffect } from "react";
 import Pagination from "@material-ui/lab/Pagination";
+import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,33 +32,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Users = (props) => {debugger
+const Users = (props) => {
   const classes = useStyles();
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${props.currentPage}&count=${props.pageSize}`
-      )
-      .then((response) => {
-        props.setUsers(response.data.items);
-        props.setTotalUsersCount(response.data.totalCount);
-      });
-  }, []);
-
-  const onPageChanged = (pageNumber) => {
-    props.setCurrentPage(pageNumber);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${props.pageSize}`
-      )
-      .then((response) => {
-        props.setUsers(response.data.items);
-        
-      });
-  };
-
-  const photo = [
+ 
+    const photo = [
     1051,
     1194,
     1236,
@@ -88,14 +65,14 @@ const Users = (props) => {debugger
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
-  debugger;
+ 
   return (
     <Container className={classes.cardGrid} maxWidth="md">
       <Pagination
         onChange={(event, page) => {
-          onPageChanged(page);
+          props.onPageChanged(page);
         }}
-        defaultPage={defaultPage}
+        defaultPage={1}
         count={pagesCount}
         color="primary"
         boundaryCount={5}
@@ -107,19 +84,19 @@ const Users = (props) => {debugger
           <Grid item key={item.id} xs={12} sm={6} md={3}>
             <Card className={classes.card}>
               {item.photos.small ? (
-                <CardMedia
+                <NavLink to={`/profile/${item.id}`}><CardMedia
                   className={classes.cardMedia}
                   image={item.photos.small}
                   title={item.name}
-                />
-              ) : (
+                /></NavLink>
+              ) : (<NavLink to={`/profile/${item.id}`}>
                 <CardMedia
                   className={classes.cardMedia}
                   image={`https://source.unsplash.com/collection/${
                     photo[Math.floor(Math.random() * photo.length)]
                   }/800x600`}
-                  title={item.name}
-                />
+                  title="unsplash"
+                /></NavLink>
               )}
               <CardContent className={classes.cardContent}>
                 <Typography variant="h5" gutterBottom>
