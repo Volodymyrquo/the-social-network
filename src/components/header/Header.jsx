@@ -5,6 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Navbar from '../navbar/Navbar';
+import { NavLink } from 'react-router-dom';
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,8 +31,13 @@ const Header = (props) => {
           <Typography variant="h6" className={classes.title}>
            THE SOCIAL NETWORK
           </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
+         
+         { props.isAuth?
+         <Toolbar><Typography>{props.login}</Typography> <Avatar alt={props.login} style={{marginLeft: "16px"}} src={"https://source.unsplash.com/collection/573722/800x600"} /></Toolbar> :
+          <Button component={NavLink} to={"/login"} color="inherit">Login</Button>
+          }
+          
+                  </Toolbar>
       </AppBar>
     </div>
   );

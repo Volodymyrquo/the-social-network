@@ -12,6 +12,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import Pagination from "@material-ui/lab/Pagination";
 import { NavLink } from "react-router-dom";
+import { usersAPI } from "../../api/api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,15 +60,14 @@ const Users = (props) => {
   ];
 
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-  let defaultPage = Math.floor(pagesCount/2);
 
   const pages = [];
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
- 
+debugger;
   return (
-    <Container className={classes.cardGrid} maxWidth="md">
+    <Container className={classes.cardGrid} maxWidth="md" style={{marginTop: "80px"}}>
       <Pagination
         onChange={(event, page) => {
           props.onPageChanged(page);
@@ -76,8 +76,7 @@ const Users = (props) => {
         count={pagesCount}
         color="primary"
         boundaryCount={5}
-        style={{marginBottom: "8px"}}
-       
+        style={{marginBottom: "16px"}}
       />
       <Grid container spacing={4}>
         {props.users.map((item) => (
@@ -105,10 +104,12 @@ const Users = (props) => {
                 <Typography>{item.status}</Typography>
               </CardContent>
               <CardActions>
-                {item.followed ? (
+                {
+                item.followed ? (
                   <Button
+                  disabled={props.followingInProgress.some(id => id === item.id)}
                     onClick={() => {
-                      props.unfollow(item.id);
+                      props.unfollow(item.id)
                     }}
                     size="small"
                     color="primary"
@@ -117,8 +118,9 @@ const Users = (props) => {
                   </Button>
                 ) : (
                   <Button
+                  disabled={props.followingInProgress.some(id => id === item.id)}
                     onClick={() => {
-                      props.follow(item.id);
+props.follow(item.id);
                     }}
                     size="small"
                     color="primary"
