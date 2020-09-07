@@ -31,9 +31,9 @@ export const setAuthUserData = (email,id,login) => ({
   data:{email,id,login}
 });
 
-export const auth = () => {
-  return (dispatch) => {
-    authAPI.auth()
+export const getAuthUserData = () => (dispatch) => {
+ 
+    authAPI.me()
 .then(data =>
        { if(data.resultCode === 0)
         {
@@ -42,6 +42,6 @@ export const auth = () => {
       }})
 
   }
-}
+
 
 export default authReducer;

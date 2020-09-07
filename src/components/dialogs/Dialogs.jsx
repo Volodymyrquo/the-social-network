@@ -7,6 +7,7 @@ import { List } from "@material-ui/core";
 import DialogItem from "./dialogItem/DialogItem";
 import TextField from "@material-ui/core/TextField";
 import Button from '@material-ui/core/Button';
+import { Redirect } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,6 +50,8 @@ const messagesElements = props.messages.map( item => <Typography key={item.id} c
     {item.message}
   </Typography>
 )
+
+
 
   return (
     <div className={classes.root} style={{marginTop: "60px"}}>

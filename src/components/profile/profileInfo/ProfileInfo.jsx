@@ -2,7 +2,8 @@ import React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Typography } from '@material-ui/core';
 import Preloader from '../../common/preloader/Preloader';
-import styles from './ProfileInfo.module.css'
+import styles from './ProfileInfo.module.css';
+import ProfileStatus from './ProfileStatus'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -59,6 +60,7 @@ const ProfileInfo = (props) => {
                         alt={props.profile.fullName}
                         title="unsplash"
                       />}
+                      <ProfileStatus />
             <Typography gutterBottom ><b><i>Name: </i></b> {props.profile.fullName}</Typography>
 
         </Box>

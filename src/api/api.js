@@ -24,12 +24,19 @@ unfollow(userId) {
    return instance.post(
       `follow/${userId}`)
       .then(response => response.data)
+    },
+    getProfile(userId) {
+      return instance.get(
+  `profile/${userId}`
+      )
+      .then(response => response.data)
     }
+  
   
 }
 
 export const authAPI = {
-  auth() {
+  me() {
     return instance.get(
       `auth/me`
     )
@@ -38,13 +45,3 @@ export const authAPI = {
   }
 }
 
-export const profileAPI = {
-
-  setUserProfile(userId) {
-    return instance.get(
-`profile/${userId}`
-    )
-    .then(response => response.data)
-  }
-
-}
