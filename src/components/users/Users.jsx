@@ -12,7 +12,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import Pagination from "@material-ui/lab/Pagination";
 import { NavLink } from "react-router-dom";
-import { usersAPI } from "../../api/api";
+import { photo } from "../../assets/utilities/photoIndexes";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,28 +36,6 @@ const useStyles = makeStyles((theme) => ({
 const Users = (props) => {
   const classes = useStyles();
 
- 
-    const photo = [
-    1051,
-    1194,
-    1236,
-    1238,
-    159213,
-    181462,
-    201032,
-    201065,
-    213594,
-    228643,
-    273258,
-    276754,
-    302501,
-    368775,
-    573722,
-    793535,
-    895539,
-    1252081,
-    1390381,
-  ];
 
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
@@ -65,7 +43,7 @@ const Users = (props) => {
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
-debugger;
+
   return (
     <Container className={classes.cardGrid} maxWidth="md" style={{marginTop: "80px"}}>
       <Pagination

@@ -3,7 +3,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Box, Typography } from '@material-ui/core';
 import Preloader from '../../common/preloader/Preloader';
 import styles from './ProfileInfo.module.css';
-import ProfileStatus from './ProfileStatus'
+import ProfileStatus from './ProfileStatus';
+import { photo } from '../../../assets/utilities/photoIndexes';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,31 +21,11 @@ const useStyles = makeStyles((theme) => ({
   
     
 const ProfileInfo = (props) => {
-    const classes = useStyles();
-    if(!props.profile) {
-      return <Preloader />
-    }
-    const photo = [
-      1051,
-      1194,
-      1236,
-      1238,
-      159213,
-      181462,
-      201032,
-      201065,
-      213594,
-      228643,
-      273258,
-      276754,
-      302501,
-      368775,
-      573722,
-      793535,
-      895539,
-      1252081,
-      1390381,
-    ];
+   
+  const classes = useStyles();
+  
+  if(!props.profile)  return <Preloader />
+    
   
     return ( 
         <Box className={classes.root} >
@@ -60,7 +42,7 @@ const ProfileInfo = (props) => {
                         alt={props.profile.fullName}
                         title="unsplash"
                       />}
-                      <ProfileStatus />
+                      <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             <Typography gutterBottom ><b><i>Name: </i></b> {props.profile.fullName}</Typography>
 
         </Box>

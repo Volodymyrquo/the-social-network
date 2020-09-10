@@ -7,7 +7,6 @@ import { List } from "@material-ui/core";
 import DialogItem from "./dialogItem/DialogItem";
 import TextField from "@material-ui/core/TextField";
 import Button from '@material-ui/core/Button';
-import { Redirect } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
