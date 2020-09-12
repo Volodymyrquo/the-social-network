@@ -1,12 +1,12 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Navbar from '../navbar/Navbar';
-import { NavLink } from 'react-router-dom';
-import Avatar from '@material-ui/core/Avatar';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import Navbar from "../navbar/Navbar";
+import { NavLink } from "react-router-dom";
+import Avatar from "@material-ui/core/Avatar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,20 +27,29 @@ const Header = (props) => {
     <div className={classes.root}>
       <AppBar position="fixed">
         <Toolbar>
-            <Navbar menuButton={classes.menuButton}/>
+          <Navbar menuButton={classes.menuButton} />
           <Typography variant="h6" className={classes.title}>
-           THE SOCIAL NETWORK
+            THE SOCIAL NETWORK
           </Typography>
-         
-         { props.isAuth?
-         <Toolbar><Typography>{props.login}</Typography> <Avatar alt={props.login} style={{marginLeft: "16px"}} src={"https://source.unsplash.com/collection/573722/800x600"} /></Toolbar> :
-          <Button component={NavLink} to={"/login"} color="inherit">Login</Button>
-          }
-          
-                  </Toolbar>
+
+          {props.isAuth ? (
+            <Toolbar>
+              <Typography>{props.login}</Typography>{" "}
+              <Avatar
+                alt={props.login}
+                style={{ marginLeft: "16px" }}
+                src={`https://social-network.samuraijs.com/activecontent/images/users/${props.id}/user-small.jpg?v=2`}
+              />
+            </Toolbar>
+          ) : (
+            <Button component={NavLink} to={"/login"} color="inherit">
+              Login
+            </Button>
+          )}
+        </Toolbar>
       </AppBar>
     </div>
   );
-}
- 
+};
+
 export default Header;

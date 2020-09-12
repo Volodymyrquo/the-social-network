@@ -30,7 +30,7 @@ const ProfileInfo = (props) => {
     return ( 
         <Box className={classes.root} >
           {props.profile.photos.small?
-          <img src={props.profile.photos.small}
+          <img src={props.profile.photos.large}
            className={styles.photo} alt={props.profile.fullName} title={props.profile.fullName} />
            :
            <img

@@ -17,7 +17,6 @@ const initialState = {
     { id: 4, message: "Yo yo yo" },
     { id: 5, message: "Uhooo" },
   ],
-  newMessageBody: "Enter your message",
 };
 
 
@@ -26,27 +25,17 @@ const dialodsReducer = (state = initialState, action) => {
   
   
   switch (action.type) {
-    case UPDATE_NEW_MESSAGE_BODY: 
-     return {
-      ...state,
-      newMessageBody: action.body
-     }
     case SEND_MESSAGE: 
     return {
       ...state,
-      newMessageBody: "",
-      messages: [...state.messages, { id: 6, message: state.newMessageBody } ]
+      messages: [...state.messages, { id: 6, message: action.newText } ]
     }
     default:
       return state;
   }
 };
 
-export const sendMessageCreator = () => ({ type: SEND_MESSAGE });
+export const sendMessageCreator = (newText) => ({ type: SEND_MESSAGE, newText});
 
-export const updateNewMessageBodyCreator = (text) => ({
-  type: UPDATE_NEW_MESSAGE_BODY,
-  body: text,
-});
 
 export default dialodsReducer;

@@ -49,7 +49,7 @@ const LoginForm = (props) => {
        
          <form onSubmit={props.handleSubmit} className={classes.root} noValidate autoComplete="off" >
         <div>
-        <Field name="login" component={renderTextField} label="Login"  defaultValue="Login"
+        <Field name="email" component={renderTextField} label="Email"  defaultValue="Email"
           variant="outlined"   id="outlined-required"
            />
      </div>

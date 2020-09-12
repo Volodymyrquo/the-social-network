@@ -54,7 +54,7 @@ const Profile = (props) => {
               <Grid item md={6}>
                 <div className={classes.mainFeaturesPostContent}>
                 <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus} />
-                <MyPostsContainer  store={props.store}  />
+                <MyPostsContainer store={props.store} />
              
                 </div>
               </Grid>

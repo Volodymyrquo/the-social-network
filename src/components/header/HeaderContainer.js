@@ -17,6 +17,8 @@ this.props.getAuthUserData();
 const mapStateToProps = (state) =>({
     isAuth: state.auth.isAuth,
     login: state.auth.login,
+    id: state.auth.id,
+   
 })
 
 export default connect(mapStateToProps,{getAuthUserData})(HeaderContainer);

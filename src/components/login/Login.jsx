@@ -1,12 +1,14 @@
 import React from 'react';
 import { Paper,  Typography } from '@material-ui/core';
 import LoginForm from './LoginForm';
+import { connect } from 'react-redux';
+import {getLoginUserData} from '../../redux/auth-reducer'
 
 
 const Login = (props) => {
 
-const onSubmit =(formData) => {
-    console.log(formData)
+const onSubmit =({email, password, rememberMe}) => {
+    props.getLoginUserData({email, password, rememberMe});
 }
 
     return (
@@ -17,5 +19,6 @@ const onSubmit =(formData) => {
     )
 }
 
+const mapStateToProps = (state) => ({});
  
-export default Login;
+export default connect(mapStateToProps,{getLoginUserData})(Login);
