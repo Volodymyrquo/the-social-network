@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from "@material-ui/core/styles";
 import { reduxForm, Field } from 'redux-form';
 import { maxLengthCreator, required } from '../../../../utils/validators/validators';
+import { Paper } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -43,7 +44,8 @@ const AddPostForm = (props) => {
 
     return ( 
         <form onSubmit={props.handleSubmit} noValidate autoComplete="off" >
-        <div  className={classes.root} style={{backgroundColor: "white", padding: "1vh", borderRadius: "5px"}}>
+       {/*  <div  className={classes.root} style={{backgroundColor: "white", padding: "1vh", borderRadius: "5px"}}> */}
+       <Paper className={classes.root}>
       <Field 
         component={renderTextField}
           id="my-post"
@@ -55,12 +57,13 @@ const AddPostForm = (props) => {
           validate={[required, maxLength50]}
          
         />
-     </div>
+        </Paper>
+    {/*  </div> */}
     <div style={{margin: "2vh"}}>
     <Button  variant="contained" color="secondary" type="submit" >
        Add post
      </Button>
-     </div>
+    </div>
       </form>
      );
 }
