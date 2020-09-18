@@ -34,7 +34,11 @@ const Header = (props) => {
 
           {props.isAuth ? (
             <Toolbar>
-              <Typography>{props.login}</Typography>{" "}
+              <Button component={NavLink} to={"/login"} onClick={props.logoutUser} color="inherit">
+                Log out
+              </Button>
+
+              <Typography>{props.login}</Typography>
               <Avatar
                 alt={props.login}
                 style={{ marginLeft: "16px" }}
@@ -43,7 +47,7 @@ const Header = (props) => {
             </Toolbar>
           ) : (
             <Button component={NavLink} to={"/login"} color="inherit">
-              Login
+              Log in
             </Button>
           )}
         </Toolbar>

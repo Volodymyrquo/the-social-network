@@ -5,7 +5,7 @@ import {
   TextField,
   Button,
   FormControlLabel,
-  Input,
+  Typography
 } from "@material-ui/core";
 import { reduxForm, Field } from "redux-form";
 import { required } from "../../utils/validators/validators";
@@ -89,6 +89,9 @@ const LoginForm = (props) => {
           label="Remember me"
         />
       </div>
+      
+        {props.error && <Typography color="secondary" gutterBottom>{props.error}</Typography>}
+     
       <div>
         <Button variant="contained" color="secondary" type="submit">
           Submit

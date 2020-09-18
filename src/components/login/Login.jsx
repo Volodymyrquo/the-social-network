@@ -3,13 +3,15 @@ import { Paper,  Typography } from '@material-ui/core';
 import LoginForm from './LoginForm';
 import { connect } from 'react-redux';
 import {getLoginUserData} from '../../redux/auth-reducer'
+import { Redirect } from 'react-router-dom';
 
 
 const Login = (props) => {
 
-const onSubmit =({email, password, rememberMe}) => {
+const onSubmit =({email, password, rememberMe}) => { 
     props.getLoginUserData({email, password, rememberMe});
 }
+if(props.isAuth) {return <Redirect to="/profile" />}
 
     return (
         <Paper style={{marginTop: "10vh", paddingLeft: "30vw", paddingBottom: "2vh"}}>
@@ -18,7 +20,11 @@ const onSubmit =({email, password, rememberMe}) => {
         </Paper>
     )
 }
+const mapStateToProps = (state) => {
+    return {
+        isAuth: state.auth.isAuth
+    }
+}
 
-const mapStateToProps = (state) => ({});
  
 export default connect(mapStateToProps,{getLoginUserData})(Login);
