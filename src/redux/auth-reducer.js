@@ -33,17 +33,17 @@ export const setAuthUserData = (email,id,login,isAuth) => ({
 });
 
 export const getAuthUserData = () => (dispatch) => {
- 
-    authAPI.me()
+
+  return  authAPI.me()
 .then(data =>
-       { if(data.resultCode === 0)
+       {if(data.resultCode === 0) debugger
         {
             let {email,id,login} = data.data;
           dispatch(setAuthUserData(email,id,login,true));
       }
     
     })
-
+   
   }
 export const getLoginUserData = ({email, password, rememberMe}) => (dispatch) => {
  

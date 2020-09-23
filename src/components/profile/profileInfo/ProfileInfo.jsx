@@ -3,8 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Box, Typography } from '@material-ui/core';
 import Preloader from '../../common/preloader/Preloader';
 import styles from './ProfileInfo.module.css';
-import ProfileStatus from './ProfileStatus';
 import { photo } from '../../../assets/utilities/photoIndexes';
+import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -42,7 +42,7 @@ const ProfileInfo = (props) => {
                         alt={props.profile.fullName}
                         title="unsplash"
                       />}
-                      <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                      <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             <Typography gutterBottom ><b><i>Name: </i></b> {props.profile.fullName}</Typography>
 
         </Box>

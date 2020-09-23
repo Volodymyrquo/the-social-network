@@ -58,10 +58,10 @@ export const profileAPI = {
 }
 
 export const authAPI = {
-  me() {
+  me() {debugger
     return instance.get(
       `auth/me`
-    )
+    ) 
     .then(response => response.data);
 
   },

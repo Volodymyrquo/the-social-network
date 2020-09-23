@@ -92,7 +92,7 @@ const Users = (props) => {
                     size="small"
                     color="primary"
                   >
-                    follow
+                    unfollow
                   </Button>
                 ) : (
                   <Button
@@ -103,7 +103,7 @@ props.follow(item.id);
                     size="small"
                     color="primary"
                   >
-                    unfollow
+                    follow
                   </Button>
                 )}
               </CardActions>
