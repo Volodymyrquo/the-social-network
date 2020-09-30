@@ -58,7 +58,7 @@ export const profileAPI = {
 }
 
 export const authAPI = {
-  me() {debugger
+  me() {
     return instance.get(
       `auth/me`
     ) 
