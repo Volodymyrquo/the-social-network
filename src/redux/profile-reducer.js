@@ -1,7 +1,8 @@
 import { usersAPI, profileAPI } from "../api/api";
-const ADD_POST = "ADD-POST";
-const SET_USER_PROFILE="SET_USER_PROFILE";
-const SET_USER_STATUS="SET_USER_STATUS";
+const ADD_POST = "profile_reducer/ADD_POST";
+const SET_USER_PROFILE="profile_reducer/SET_USER_PROFILE";
+const SET_USER_STATUS="profile_reducer/SET_USER_STATUS";
+const DELETE_POST="profile_reducer/DELETE_POST";
 
 
 const initialState = {
@@ -29,6 +30,12 @@ const profileReducer = (state = initialState, action) => {
         profile: action.profile,
       };
    
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter(p => p.id !== action.postId),
+      };
+   
     case SET_USER_STATUS:
       return {
         ...state,
@@ -41,6 +48,7 @@ const profileReducer = (state = initialState, action) => {
 };
 
 export const addPostActionCreator = (body) => ({ type: ADD_POST, body });
+export const deletePost = (postId) => ({ type: DELETE_POST, postId });
 
 const setUserProfile = (profile) => ({
   type: SET_USER_PROFILE,
@@ -51,32 +59,29 @@ const setUserStatus = (status) => ({
  status
 });
 
-export const getUserProfile = (userId) => (dispatch) => {
+export const getUserProfile = (userId) => async (dispatch) => {
 
-  usersAPI.getProfile(userId)
-   .then(data => {
+ const data = await usersAPI.getProfile(userId);
+   
         dispatch(setUserProfile(data));
     
-   });
 
   }
-export const getUserStatus = (userId) => (dispatch) => {
+export const getUserStatus = (userId) => async (dispatch) => {
 
-  profileAPI.getStatus(userId)
-   .then(status => {
+  const status = await profileAPI.getStatus(userId);
+   
         dispatch(setUserStatus(status));
     
-   });
 
   }
-export const updateStatus = (status) => (dispatch) => {
+export const updateStatus = (status) => async (dispatch) => {
 
-  profileAPI.updateStatus(status)
-   .then(data => {
-     if(data.resultCode === 0){
+  const data = await profileAPI.updateStatus(status);
+  
+     if(!data.resultCode){
         dispatch(setUserStatus(status))};
     
-   });
 
   }
 

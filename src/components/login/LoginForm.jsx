@@ -50,11 +50,11 @@ const renderTextField = ({
   />
 );
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit, error}) => {
   const classes = useStyles();
   return (
     <form
-      onSubmit={props.handleSubmit}
+      onSubmit={handleSubmit}
       className={classes.root}
       noValidate
       autoComplete="off"
@@ -90,7 +90,7 @@ const LoginForm = (props) => {
         />
       </div>
       
-        {props.error && <Typography color="secondary" gutterBottom>{props.error}</Typography>}
+        {error && <Typography color="secondary" gutterBottom>{error}</Typography>}
      
       <div>
         <Button variant="contained" color="secondary" type="submit">

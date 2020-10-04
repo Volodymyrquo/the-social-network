@@ -13,6 +13,8 @@ import { connect } from "react-redux";
 import { initializeApp } from "./redux/app-reducer";
 import { compose } from "redux";
 import Preloader from "./components/common/preloader/Preloader";
+import UsersWithHooks from "./components/users/UsersWithHooks";
+
 
 class App extends React.Component {
   componentDidMount() {
@@ -27,6 +29,7 @@ class App extends React.Component {
     }
 
     return (
+     
       <div>
         <HeaderContainer />
 
@@ -35,7 +38,7 @@ class App extends React.Component {
         <Route path="/login" render={() => <Login />} />
         <Route path="/news" render={() => <News />} />
         <Route path="/musik" render={() => <Musik />} />
-        <Route path="/users" render={() => <UsersContainer />} />
+        <Route path="/users" render={() => <UsersWithHooks />} />
         <Route path="/settings" render={() => <Settings />} />
       </div>
     );

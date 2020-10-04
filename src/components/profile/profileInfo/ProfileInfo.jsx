@@ -20,18 +20,18 @@ const useStyles = makeStyles((theme) => ({
   }));
   
     
-const ProfileInfo = (props) => {
+const ProfileInfo = ({profile, status, updateStatus}) => {
    
   const classes = useStyles();
   
-  if(!props.profile)  return <Preloader />
+  if(!profile)  return <Preloader />
     
   
     return ( 
         <Box className={classes.root} >
-          {props.profile.photos.small?
-          <img src={props.profile.photos.large}
-           className={styles.photo} alt={props.profile.fullName} title={props.profile.fullName} />
+          {profile.photos.small?
+          <img src={profile.photos.large}
+           className={styles.photo} alt={profile.fullName} title={profile.fullName} />
            :
            <img
                      
@@ -39,11 +39,11 @@ const ProfileInfo = (props) => {
                           photo[Math.floor(Math.random() * photo.length)]
                         }/800x600`}
                         className={styles.photo}
-                        alt={props.profile.fullName}
+                        alt={profile.fullName}
                         title="unsplash"
                       />}
-                      <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
-            <Typography gutterBottom ><b><i>Name: </i></b> {props.profile.fullName}</Typography>
+                      <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
+            <Typography gutterBottom ><b><i>Name: </i></b> {profile.fullName}</Typography>
 
         </Box>
         
