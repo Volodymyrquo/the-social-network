@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Article = ({
+const Movie = ({
    followingInProgress,
   follow,
   unfollow,
@@ -35,14 +35,14 @@ const Article = ({
 
 
   return (
-<Grid item key={item.id} xs={12} sm={6} md={3}>
+<Grid item key={item.id} xs={12} sm={6} md={4}>
             <Card className={classes.card}>
-              {item.id ? (
+              {item.image ? (
                 <NavLink to={`/profile/${item.id}`}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image={item.jetpack_featured_media_url}
-                    title={item.title.rendered}
+                    image={item.image}
+                    title={item.title}
                   />
                 </NavLink>
               ) : (
@@ -57,10 +57,10 @@ const Article = ({
                 </NavLink>
               )}
               <CardContent className={classes.cardContent}>
-              {/*  <Typography variant="h5" gutterBottom> */}
-                  {item.title.rendered}
-              {/*  </Typography> */}
-                <Typography>{item.status}</Typography>
+               <Typography variant="h6" gutterBottom> 
+                  {item.fullTitle}
+               </Typography> 
+                <Typography>{item.crew}</Typography>
               </CardContent>
             {/*   <CardActions>
                 {item.followed ? (
@@ -93,4 +93,4 @@ const Article = ({
   );
 };
 
-export default Article;
+export default Movie;

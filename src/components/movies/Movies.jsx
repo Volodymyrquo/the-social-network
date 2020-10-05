@@ -10,21 +10,18 @@ import {
   follow,
   unfollow,
   setCurrentPage,
- 
-} from "../../redux/news-reducer";
-import {receiveNews} from "../../redux/news-reducer";
+  receiveMovies
+ } from "../../redux/movies-reducer";
 import Preloader from "../common/preloader/Preloader";
 import {
-
   getCurrentPage,
   getPageSize,
-  getTotalUsersCount,
+  getTotalMoviesCount,
   getIsFetching,
   getFollowingInProgress,
-} from "../../redux/users-selectors";
-
-import Article from "./Article";
-import { getNews } from "../../redux/news-selectors";
+  getMovies 
+} from "../../redux/movies-selectors";
+import Movie from "./Movie";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -37,17 +34,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const News = ({
-  totalUsersCount,
+  totalMoviesCount,
   pageSize,
   currentPage,
   followingInProgress,
   follow,
   unfollow,
   onPageChanged,
-  news,
-  receiveNews,
+  movies,
+  receiveMovies,
   isFetching
-}) => {debugger
+}) => {
   const classes = useStyles();
 
   const [pageNumber, setPageNumber] = useState(currentPage)
@@ -58,16 +55,18 @@ const News = ({
   };
 
   useEffect( () => {
-    receiveNews(pageNumber, pageSize)
-  }, [pageNumber, pageSize, receiveNews] )
+    receiveMovies(pageNumber, pageSize)
+  }, [pageNumber, pageSize, receiveMovies] )
 
 
-  let pagesCount = Math.ceil(totalUsersCount / pageSize);
+  let pagesCount = Math.ceil(totalMoviesCount / pageSize);
 
   const pages = [];
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
+
+  const pageMovies = movies.slice((pageNumber*pageSize - pageSize),pageNumber*pageSize)
 
   return (
     <>
@@ -88,9 +87,9 @@ const News = ({
         style={{ marginBottom: "16px"}}
       />
       <Grid container spacing={4}>
-        {news.map((item) => (
+        {pageMovies.map((item) => (
           
-          <Article
+          <Movie
   followingInProgress={followingInProgress}
   follow={follow}
   unfollow={unfollow}
@@ -105,9 +104,9 @@ const News = ({
 
 const mapStateToProps = (state) => {
   return {
-   news: getNews(state),
+   movies: getMovies(state),
     pageSize: getPageSize(state),
-    totalUsersCount: getTotalUsersCount(state),
+    totalMoviesCount: getTotalMoviesCount(state),
     currentPage: getCurrentPage(state),
     isFetching: getIsFetching(state),
     followingInProgress: getFollowingInProgress(state),
@@ -118,5 +117,5 @@ export default connect(mapStateToProps, {
   follow,
   unfollow,
   setCurrentPage,
-  receiveNews,
+  receiveMovies,
 })(News);

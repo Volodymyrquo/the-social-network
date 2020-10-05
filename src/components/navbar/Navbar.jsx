@@ -34,6 +34,7 @@ const Navbar = (props) => {
         <MenuItem onClick={handleClose}><Link component={NavLink} to="/profile">Profile</Link></MenuItem>
         <MenuItem onClick={handleClose}><Link component={NavLink} to="/dialogs">Messages</Link></MenuItem>
         <MenuItem onClick={handleClose}><Link component={NavLink} to="/news">News</Link></MenuItem>
+        <MenuItem onClick={handleClose}><Link component={NavLink} to="/movies">Movies</Link></MenuItem>
         <MenuItem onClick={handleClose}><Link component={NavLink} to="/musik">Musik</Link></MenuItem>
         <MenuItem onClick={handleClose}><Link component={NavLink} to="/users">Users</Link></MenuItem>
         <MenuItem onClick={handleClose}><Link component={NavLink} to="/settings">Settings</Link></MenuItem>
