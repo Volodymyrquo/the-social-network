@@ -5,7 +5,7 @@ export const getPageSize = (state) => {
     return state.moviesPage.pageSize
 }
 export const getTotalMoviesCount = (state) => {
-    return state.moviesPage.totalMovies  Count
+    return state.moviesPage.totalMoviesCount
 }
 export const getCurrentPage = (state) => {
     return state.moviesPage.currentPage

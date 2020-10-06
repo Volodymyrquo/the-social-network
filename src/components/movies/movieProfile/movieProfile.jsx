@@ -6,7 +6,9 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ProfileInfo from './profileInfo/ProfileInfo'
-import MyPostsContainer from './myPosts/MyPostsContainer';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { getUserProfile } from '../../../redux/profile-reducer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,9 +40,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Profile = ({profile,status,store,updateStatus}) => {
+const movieProfile = ({plot, userId, getUserProfile}) => {
     const classes = useStyles();
-   
+
+    useEffect(() => {
+      getUserProfile(userId)
+    }, [userId, getUserProfile])
+
+
+
 
     return ( 
 <Paper
@@ -53,9 +61,8 @@ const Profile = ({profile,status,store,updateStatus}) => {
             <Grid container>
               <Grid item md={6}>
                 <div className={classes.mainFeaturesPostContent}>
-                <ProfileInfo profile={profile} status={status} updateStatus={updateStatus} />
-                <MyPostsContainer store={store} />
-             
+               {plot}     
+              
                 </div>
               </Grid>
             </Grid>
@@ -64,5 +71,14 @@ const Profile = ({profile,status,store,updateStatus}) => {
           
         </Paper>     );
 }
- 
-export default Profile;
+
+const mapStateToProps = (state) => ({
+  plot: state.moviesPage.plot,
+
+});
+
+export default compose(
+  connect(mapStateToProps, { getUserProfile}),
+  withRouter,
+  withAuthRedirect 
+)(movieProfile);
