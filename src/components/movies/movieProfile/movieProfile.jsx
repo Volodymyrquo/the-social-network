@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Container,
   Paper,
-  Grid,
+  Grid,Typography
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import ProfileInfo from './profileInfo/ProfileInfo'
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { getUserProfile } from '../../../redux/profile-reducer';
+import { getMovieProfile } from '../../../redux/movies-reducer';
+import { withRouter } from 'react-router-dom';
+import withAuthRedirect from '../../../hoc/withAuthRedirect';
+import Actor from './Actor';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,20 +42,26 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const movieProfile = ({plot, userId, getUserProfile}) => {
+const MovieProfile = ({image, plot, actorList,  getMovieProfile, ...props}) => {
     const classes = useStyles();
+    const movieId = props.match.params.movieId;
 
-    useEffect(() => {
-      getUserProfile(userId)
-    }, [userId, getUserProfile])
+  const [actorState, setActorState] = useState(actorList);
+
+  useEffect(() => {
+    setActorState(actorList)
+  }, [actorList])
 
 
+  useEffect(() => {
+    getMovieProfile(movieId)
+  }, [movieId, getMovieProfile])
 
 
     return ( 
 <Paper
           className={classes.mainFeaturesPost}
-          style={{ backgroundImage: `url(https://source.unsplash.com/random)`, marginTop: "60px" }}
+          style={{ backgroundImage:`url(${image})`, marginTop: "60px" }}
         >
          
           <Container fixed>
@@ -61,24 +69,44 @@ const movieProfile = ({plot, userId, getUserProfile}) => {
             <Grid container>
               <Grid item md={6}>
                 <div className={classes.mainFeaturesPostContent}>
-               {plot}     
+
+                  <Typography>   {plot} </Typography>
+           
               
                 </div>
               </Grid>
             </Grid>
            
           </Container>
-          
+        <Container
+      className={classes.cardGrid}
+      maxWidth="md"
+      style={{ marginTop: "80px" }}
+    >
+    
+      <Grid container spacing={4}>
+        {actorState.map((item) => (
+          <Grid item key={item.id} xs={12} sm={6} md={3}>
+          <Actor 
+  
+  item={item} />
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
+           
         </Paper>     );
 }
 
 const mapStateToProps = (state) => ({
-  plot: state.moviesPage.plot,
+image: state.moviesPage.image,
+plot: state.moviesPage.plot,
+actorList: state.moviesPage.actorList,
 
 });
 
 export default compose(
-  connect(mapStateToProps, { getUserProfile}),
-  withRouter,
-  withAuthRedirect 
-)(movieProfile);
+  connect(mapStateToProps, { getMovieProfile}),
+    withAuthRedirect,
+    withRouter 
+)(MovieProfile);

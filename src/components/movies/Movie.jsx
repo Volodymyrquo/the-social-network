@@ -38,7 +38,7 @@ const Movie = ({
 <Grid item key={item.id} xs={12} sm={6} md={4}>
             <Card className={classes.card}>
               {item.image ? (
-                <NavLink to={`/profile/${item.id}`}>
+                <NavLink to={`/movieProfile/${item.id}`}>
                   <CardMedia
                     className={classes.cardMedia}
                     image={item.image}

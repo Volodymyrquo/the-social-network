@@ -15,6 +15,7 @@ import { compose } from "redux";
 import Preloader from "./components/common/preloader/Preloader";
 import UsersWithHooks from "./components/users/UsersWithHooks";
 import Movies from "./components/movies/Movies";
+import MovieProfile from "./components/movies/movieProfile/MovieProfile";
 
 
 class App extends React.Component {
@@ -35,6 +36,7 @@ class App extends React.Component {
         <HeaderContainer />
 
         <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+        <Route path="/movieProfile/:movieId?" render={() => <MovieProfile />} />
         <Route path="/dialogs" render={() => <DialogsContainer />} />
         <Route path="/login" render={() => <Login />} />
         <Route path="/news" render={() => <News />} />
