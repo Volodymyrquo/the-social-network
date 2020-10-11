@@ -24,7 +24,7 @@ export const newsAPI = () => {
     "useQueryString":true
     }
     })
-    .then(response=>{debugger
+    .then(response=>{
       
       return response.data} )
       .catch((error)=>{
