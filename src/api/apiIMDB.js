@@ -3,6 +3,7 @@ import * as axios from 'axios';
 const apiKey = "k_A4pyGfGe";
 const top250 = "Top250Movies";
 const title = "Title"
+const youTube = "YouTubeTrailer"
 
 const instance = axios.create({
     baseURL:`https://imdb-api.com/en/API/`
@@ -22,6 +23,15 @@ export const moviesAPI = () => {
 export const movieProfileAPI = (movieId) => {
   return instance.get(
  `${title}/${apiKey}/${movieId}`
+     )
+  .then(response=>response.data) 
+  .catch((error)=>{
+    console.log(error)
+  })
+}
+export const movieTrailer = (movieId) => {
+  return instance.get(
+ `${youTube}/${apiKey}/${movieId}`
      )
   .then(response=>response.data) 
   .catch((error)=>{

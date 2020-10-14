@@ -1,6 +1,9 @@
 export const getMovies = (state) => {
     return state.moviesPage.movies
 }
+export const getVideoUrl = (state) => {
+    return state.moviesPage.videoUrl
+}
 export const getPageSize = (state) => {
     return state.moviesPage.pageSize
 }

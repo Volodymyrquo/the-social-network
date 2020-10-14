@@ -1,5 +1,5 @@
 import { usersAPI } from "../api/api";
-import { movieProfileAPI, moviesAPI } from "../api/apiIMDB";
+import { movieProfileAPI, moviesAPI, movieTrailer } from "../api/apiIMDB";
 import { updateObjectInArray } from "../utils/object-helpers";
 
 const FOLLOW = "FOLLOW";
@@ -9,6 +9,7 @@ const SET_MOVIE_PROFILE = "SET_MOVIE_PROFILE";
 const SET_CURRENT_PAGE="SET_CURRENT_PAGE";
 const TOGGLE_IS_FETCHING="TOGGLE_IS_FETCHING";
 const TOGGLE_IS_FOLLOWING_PROGRESS="TOGGLE_IS_FOLLOWING_PROGRESS";
+const SET_VIDEO_URL="SET_VIDEO_URL";
 
 const initialState = {
  movies: [], 
@@ -18,7 +19,8 @@ const initialState = {
   currentPage: 1,
   isFetching: false,
   followingInProgress: [],
-  movieProfile: {}
+  movieProfile: {},
+  videoUrl: ""
 };
 
 const moviesReducer = (state = initialState, action) => {
@@ -37,6 +39,11 @@ const moviesReducer = (state = initialState, action) => {
       return {
         ...state,
         movies: action.movies,
+      };
+    case SET_VIDEO_URL:
+      return {
+        ...state,
+        videoUrl: action.videoUrl,
       };
     case SET_MOVIE_PROFILE:
       return {
@@ -68,6 +75,8 @@ const moviesReducer = (state = initialState, action) => {
 export const followSuccess = (userId) => ({ type: FOLLOW, userId });
 export const unfollowSuccess = (userId) => ({ type: UNFOLLOW, userId });
 export const setMovies = (movies) => ({ type: SET_MOVIES, movies });
+export const setVideoUrl = (videoUrl) => ({ type: SET_VIDEO_URL, videoUrl });
+
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 export const toggleIsFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId });
@@ -106,11 +115,19 @@ export const follow = (userId) => async (dispatch) => {
   followUnfollowFlow(dispatch,userId,usersAPI.follow.bind(usersAPI),followSuccess);
 }
 
-export const getMovieProfile = (movieId) => async (dispatch) => { debugger
+export const getMovieProfile = (movieId) => async (dispatch) => { 
 
   const data = await movieProfileAPI(movieId);
     
          dispatch(setMovieProfile(data));
+     
+ 
+   }
+export const receiveVideoUrl = (movieId) => async (dispatch) => {
+
+  const data = await movieTrailer(movieId);
+    
+         dispatch(setVideoUrl(data.videoUrl));
      
  
    }

@@ -10,7 +10,8 @@ import {
   follow,
   unfollow,
   setCurrentPage,
-  receiveMovies
+  receiveMovies,
+  receiveVideoUrl
  } from "../../redux/movies-reducer";
 import Preloader from "../common/preloader/Preloader";
 import {
@@ -19,7 +20,8 @@ import {
   getTotalMoviesCount,
   getIsFetching,
   getFollowingInProgress,
-  getMovies 
+  getMovies,
+  getVideoUrl
 } from "../../redux/movies-selectors";
 import Movie from "./Movie";
 
@@ -33,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const News = ({
+const Movies = ({
   totalMoviesCount,
   pageSize,
   currentPage,
@@ -43,7 +45,9 @@ const News = ({
   onPageChanged,
   movies,
   receiveMovies,
-  isFetching
+  isFetching,
+  videoUrl,
+  receiveVideoUrl
 }) => {
   const classes = useStyles();
 
@@ -58,6 +62,7 @@ const News = ({
     receiveMovies(pageNumber, pageSize)
   }, [pageNumber, pageSize, receiveMovies] )
 
+ 
 
   let pagesCount = Math.ceil(totalMoviesCount / pageSize);
 
@@ -93,7 +98,10 @@ const News = ({
   followingInProgress={followingInProgress}
   follow={follow}
   unfollow={unfollow}
-  item={item} />
+  item={item}
+  receiveVideoUrl={receiveVideoUrl}
+  videoUrl={videoUrl}
+  />
           
         ))}
       </Grid>
@@ -105,11 +113,14 @@ const News = ({
 const mapStateToProps = (state) => {
   return {
    movies: getMovies(state),
+   videoUrl: getVideoUrl(state),
+  
     pageSize: getPageSize(state),
     totalMoviesCount: getTotalMoviesCount(state),
     currentPage: getCurrentPage(state),
     isFetching: getIsFetching(state),
     followingInProgress: getFollowingInProgress(state),
+
   };
 };
 
@@ -118,4 +129,5 @@ export default connect(mapStateToProps, {
   unfollow,
   setCurrentPage,
   receiveMovies,
-})(News);
+  receiveVideoUrl
+})(Movies);

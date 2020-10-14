@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Typography,
   Button,
@@ -6,14 +6,17 @@ import {
   Card,
   CardMedia,
   CardContent,
-  Grid
+  Grid,
+  Fade,
+  Backdrop,
+  Modal,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { photo } from "../../assets/utilities/photoIndexes";
+import ReactPlayer from "react-player";
 
 const useStyles = makeStyles((theme) => ({
- 
   cardMedia: {
     paddingTop: "100%",
   },
@@ -23,46 +26,89 @@ const useStyles = makeStyles((theme) => ({
   cardGrid: {
     marginTop: theme.spacing(4),
   },
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: "2px solid #000",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(1, 2, 1),
+  },
 }));
 
-const Movie = ({
-   followingInProgress,
-  follow,
-  unfollow,
-   item
-}) => {
+const Movie = ({item, receiveVideoUrl, videoUrl }) => {
   const classes = useStyles();
+   const [open, setOpen] = useState(false);
+
+  const handleOpen = (id) => {
+    setOpen(true);
+    receiveVideoUrl(id)
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+ 
 
 
   return (
-<Grid item key={item.id} xs={12} sm={6} md={4}>
-            <Card className={classes.card}>
-              {item.image ? (
-                <NavLink to={`/movieProfile/${item.id}`}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image={item.image}
-                    title={item.title}
-                  />
-                </NavLink>
-              ) : (
-                <NavLink to={`/profile/${item.id}`}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image={`https://source.unsplash.com/collection/${
-                      photo[Math.floor(Math.random() * photo.length)]
-                    }/800x600`}
-                    title="unsplash"
-                  />
-                </NavLink>
-              )}
-              <CardContent className={classes.cardContent}>
-               <Typography variant="h6" gutterBottom> 
-                  {item.fullTitle}
-               </Typography> 
-                <Typography>{item.crew}</Typography>
-              </CardContent>
-            {/*   <CardActions>
+    <Grid item key={item.id} xs={12} sm={6} md={4}>
+      <Card className={classes.card}>
+        <CardMedia
+          className={classes.cardMedia}
+          image={item.image}
+          title={item.title}
+        />
+        <CardContent className={classes.cardContent}>
+          <Typography variant="h6" gutterBottom>
+            {item.fullTitle}
+          </Typography>
+          <Typography>{item.crew}</Typography>
+        </CardContent>
+        <CardActions>
+          <Button
+            component={NavLink}
+            to={`/movieProfile/${item.id}`}
+            size="small"
+            color="primary"
+            variant="contained"
+          >
+            About
+          </Button>
+         <div>
+            <Button
+              onClick={() => {handleOpen(item.id)}}
+              size="small"
+              color="secondary"
+              variant="contained"
+            >
+              Trailer
+            </Button>
+            <Modal
+              aria-labelledby="transition-modal-title"
+              aria-describedby="transition-modal-description"
+              className={classes.modal}
+              open={open}
+              onClose={handleClose}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500,
+              }}
+            >
+              <Fade in={open}>
+                <div className={classes.paper}>
+            <h2 id="transition-modal-title">{item.title}</h2>
+                  <ReactPlayer width="75vw" height="75vh" controls url={videoUrl} />
+                </div>
+              </Fade>
+            </Modal>
+          </div>
+      </CardActions>
+        {/*   <CardActions>
                 {item.followed ? (
                   <Button
                     disabled={followingInProgress.some((id) => id === item.id)}
@@ -87,9 +133,8 @@ const Movie = ({
                   </Button>
                 )}
               </CardActions> */}
-            </Card>
-            </Grid>
-   
+      </Card>
+    </Grid>
   );
 };
 
