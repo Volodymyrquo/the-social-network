@@ -53,6 +53,15 @@ export const profileAPI = {
     )
     .then(response => response.data);
 
+  } ,
+  savePhoto(photoFile) {
+    const formData = new FormData();
+    formData.append("image", photoFile)
+    return instance.put(
+      `profile/photo`, formData
+    )
+    .then(response => response.data);
+
   } 
 
 }

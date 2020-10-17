@@ -3,7 +3,7 @@ import "./App.css";
 import Settings from "./components/settings/Settings";
 import News from "./components/news/News";
 import Musik from "./components/musik/Musik";
-import { HashRouter, Route, withRouter } from "react-router-dom";
+import { BrowserRouter, Route, withRouter } from "react-router-dom";
 import HeaderContainer from "./components/header/HeaderContainer";
 import Login from "./components/login/Login";
 import { connect, Provider } from "react-redux";
@@ -65,11 +65,11 @@ const NextApp = compose(
 
 const App = () => {
   return ( 
-    <HashRouter>
+    <BrowserRouter>
     <Provider store={store} >
       <NextApp />
     </Provider>
-    </HashRouter>
+    </BrowserRouter>
    );
 }
  

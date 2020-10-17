@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Profile = ({profile,status,store,updateStatus}) => {
+const Profile = ({profile,status,store,updateStatus, isOwner, savePhoto}) => {
     const classes = useStyles();
    
 
@@ -53,7 +53,7 @@ const Profile = ({profile,status,store,updateStatus}) => {
             <Grid container>
               <Grid item md={6}>
                 <div className={classes.mainFeaturesPostContent}>
-                <ProfileInfo profile={profile} status={status} updateStatus={updateStatus} />
+                <ProfileInfo profile={profile} status={status} updateStatus={updateStatus} isOwner={isOwner} savePhoto={savePhoto} />
                 <MyPostsContainer store={store} />
              
                 </div>

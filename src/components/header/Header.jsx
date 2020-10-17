@@ -42,7 +42,7 @@ const Header = (props) => {
               <Avatar
                 alt={props.login}
                 style={{ marginLeft: "16px" }}
-                src={`https://social-network.samuraijs.com/activecontent/images/users/${props.id}/user-small.jpg?v=2`}
+                src={`https://social-network.samuraijs.com/activecontent/images/users/${props.id}/user-small.jpg`}
               />
             </Toolbar>
           ) : (
