@@ -1,32 +1,36 @@
-import { Box, Typography } from '@material-ui/core';
+import { Box, Button, Typography } from '@material-ui/core';
 import React from 'react';
 import ProfileContact from './ProfileContact';
 
-const ProfileData = ({profile}) => {
+const ProfileData = ({profile, onEditModeChange, isOwner}) => {
     return ( 
         <Box>
+                <div>
+      {isOwner && <Button onClick={onEditModeChange} variant="contained" color="secondary" gutterBottom>Edit profile</Button>}
+
+      </div>
  <Typography gutterBottom >
-        <b><i>Name: </i></b>{" "}
+        <b><i>Name: </i></b>{" "} </Typography>
         {profile.fullName}
-      </Typography>
+     
       <Typography>  
-        <b><i>About me: </i></b>
+        <b><i>About me: </i></b></Typography>
         {profile.aboutMe}
-</Typography>
+
 <Typography>  
-        <b><i>Looking for a job: </i></b>
+        <b><i>Looking for a job: </i></b></Typography>
         {profile.lookingForAJob? "yes" : "no"}
-</Typography>
-{profile.lookingForAJob && <Typography>
-        <b><i>My professional skills: </i></b>
-        {profile.lookingForAJobDescription}
-</Typography>}
+
+{profile.lookingForAJob &&<div><Typography>
+        <b><i>My professional skills: </i></b></Typography>
+{profile.lookingForAJobDescription}</div> }
+
 <Typography gutterBottom >
-        <b><i>Contacts: </i></b>{" "}
+        <b><i>Contacts: </i></b>{" "}</Typography>
         <Box pl={3}>
         {Object.keys(profile.contacts).map(item =>  <ProfileContact key={item} contactTitle={item} contactValue={profile.contacts[item]}   />)}
         </Box>
-      </Typography>
+      
 
 </Box>
     )

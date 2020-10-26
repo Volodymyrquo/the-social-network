@@ -8,6 +8,7 @@ import { Redirect } from "react-router-dom";
 const Login = ({ isAuth, getLoginUserData }) => {
   const onSubmit = ({ email, password, rememberMe }) => {
     getLoginUserData({ email, password, rememberMe });
+    console.log({ email, password, rememberMe })
   };
   if (isAuth) {
     return <Redirect to="/profile" />;

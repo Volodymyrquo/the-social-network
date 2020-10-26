@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Box, Button, IconButton, Typography } from "@material-ui/core";
+import { Box, Button, IconButton, Paper, Typography } from "@material-ui/core";
 import Preloader from "../../common/preloader/Preloader";
 import styles from "./ProfileInfo.module.css";
 import { photo } from "../../../assets/utilities/photoIndexes";
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
+const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, saveProfile }) => {
   const classes = useStyles();
 
   const [uploadMode, setUploadMode] = useState(false);
@@ -38,11 +38,12 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
   };
 
   const onEditModeChange = () => {
-
     setEditMode(true);
+  };
+const onSubmit = (formData) => {
 
-  }
-
+saveProfile(formData);
+}
   if (!profile) return <Preloader />;
 
   return (
@@ -65,24 +66,30 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
             color="secondary"
             onClick={activateInputFile}
           />
- 
+
           <input
             type={"file"}
             style={!uploadMode ? { display: "none" } : null}
             onChange={onMainPhotoSelected}
           />
-          
         </Fragment>
       )}
-      <div>
-      {isOwner && <Button onClick={onEditModeChange} variant="contained" color="secondary">Edit profile</Button>}
 
-      </div>
+      {editMode ? (
+        <Paper>
+        <ProfileDataForm
+          profile={profile}
+          onSubmit={onSubmit}
+        /></Paper>
+      ) : (
+        <ProfileData
+          profile={profile}
+          isOwner={isOwner}
+          onEditModeChange={onEditModeChange}
+        />
+      )}
+
       <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
-     
-     {editMode ? <ProfileDataForm profile={profile} /> : <ProfileData profile={profile} />}
-      
-      
     </Box>
   );
 };

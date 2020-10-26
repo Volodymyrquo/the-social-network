@@ -104,6 +104,16 @@ export const savePhoto = (file) => async (dispatch) => {
 
   }
 
+export const saveProfile = (profile) => async (dispatch) => {
+
+  const data = await profileAPI.saveProfile(profile);
+  debugger
+     if(!data.resultCode){
+       /*  dispatch(getUserProfile(data.data.userId)) */};
+    
+
+  }
+
 
 
 
