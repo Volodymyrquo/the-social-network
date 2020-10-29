@@ -50,7 +50,7 @@ const renderTextField = ({
   />
 );
 
-const ProfileDataForm = ({profile, handleSubmit, error }) => {
+const ProfileDataForm = ({ profile, handleSubmit, error }) => {
   const classes = useStyles();
   return (
     <form
@@ -63,7 +63,7 @@ const ProfileDataForm = ({profile, handleSubmit, error }) => {
         <Field
           name="fullName"
           component={renderTextField}
-          label={profile.fullName}
+          label="Full Name"
           variant="outlined"
           validate={[]}
         />
@@ -93,6 +93,19 @@ const ProfileDataForm = ({profile, handleSubmit, error }) => {
           multiline
           validate={[]}
         />
+      </div>
+      <div>
+        <b>Contacts:</b>
+        {Object.keys(profile.contacts).map((item) => (
+          <Field
+            key={item}
+            name={`contacts.${item}`}
+            component={renderTextField}
+            label={item}
+            variant="outlined"
+            validate={[]}
+          />
+        ))}
       </div>
 
       {error && (

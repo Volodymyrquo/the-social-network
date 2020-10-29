@@ -21,7 +21,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, saveProfile }) => {
+const ProfileInfo = ({
+  profile,
+  status,
+  updateStatus,
+  isOwner,
+  savePhoto,
+  saveProfile,
+}) => {
   const classes = useStyles();
 
   const [uploadMode, setUploadMode] = useState(false);
@@ -40,10 +47,10 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, savePr
   const onEditModeChange = () => {
     setEditMode(true);
   };
-const onSubmit = (formData) => {
-
-saveProfile(formData);
-}
+  const onSubmit = (formData) => {
+    saveProfile(formData);
+    setEditMode(false);
+  };
   if (!profile) return <Preloader />;
 
   return (
@@ -77,10 +84,12 @@ saveProfile(formData);
 
       {editMode ? (
         <Paper>
-        <ProfileDataForm
-          profile={profile}
-          onSubmit={onSubmit}
-        /></Paper>
+          <ProfileDataForm
+            initialValues={profile}
+            onSubmit={onSubmit}
+            profile={profile}
+          />
+        </Paper>
       ) : (
         <ProfileData
           profile={profile}
