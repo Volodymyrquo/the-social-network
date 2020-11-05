@@ -1,6 +1,8 @@
 # The social network
 
-![Application](https://i.ibb.co/qyLv7x8/the-social-network.png)
+###[Live Site](https://volodymyrquo.github.io/the-social-network/)
+
+![The Social Network Application](https://i.ibb.co/qyLv7x8/the-social-network.png)
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
