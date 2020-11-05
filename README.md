@@ -1,6 +1,6 @@
 # The social network
 
-###[Live Site](https://volodymyrquo.github.io/the-social-network/)
+### [Live Site](https://volodymyrquo.github.io/the-social-network/)
 
 ![The Social Network Application](https://i.ibb.co/qyLv7x8/the-social-network.png)
 
