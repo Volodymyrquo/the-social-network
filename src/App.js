@@ -1,26 +1,26 @@
-import React from "react";
-import "./App.css";
-import Settings from "./components/settings/Settings";
-import News from "./components/news/News";
-import Musik from "./components/musik/Musik";
-import { BrowserRouter, Route, withRouter } from "react-router-dom";
-import HeaderContainer from "./components/header/HeaderContainer";
-import Login from "./components/login/Login";
-import { connect, Provider } from "react-redux";
-import { initializeApp } from "./redux/app-reducer";
-import { compose } from "redux";
-import Preloader from "./components/common/preloader/Preloader";
-import UsersWithHooks from "./components/users/UsersWithHooks";
-import Movies from "./components/movies/Movies";
-import MovieProfile from "./components/movies/movieProfile/MovieProfile";
-import store from "./redux/redux-store";
-import { withSuspense } from "./hoc/withSuspense";
+import React from 'react';
+import './App.css';
+import Settings from './components/settings/Settings';
+import News from './components/news/News';
+import Musik from './components/musik/Musik';
+import { HashRouter, Route, withRouter } from 'react-router-dom';
+import HeaderContainer from './components/header/HeaderContainer';
+import Login from './components/login/Login';
+import { connect, Provider } from 'react-redux';
+import { initializeApp } from './redux/app-reducer';
+import { compose } from 'redux';
+import Preloader from './components/common/preloader/Preloader';
+import UsersWithHooks from './components/users/UsersWithHooks';
+import Movies from './components/movies/Movies';
+import MovieProfile from './components/movies/movieProfile/MovieProfile';
+import store from './redux/redux-store';
+import { withSuspense } from './hoc/withSuspense';
 
 const DialogsContainer = React.lazy(() =>
-  import("./components/dialogs/DialogsContainer")
+  import('./components/dialogs/DialogsContainer')
 );
 const ProfileContainer = React.lazy(() =>
-  import("./components/profile/ProfileContainer")
+  import('./components/profile/ProfileContainer')
 );
 
 class StartApp extends React.Component {
@@ -38,17 +38,17 @@ class StartApp extends React.Component {
         <HeaderContainer />
 
         <Route
-          path="/profile/:userId?"
+          path='/profile/:userId?'
           render={withSuspense(ProfileContainer)}
         />
-        <Route path="/movieProfile/:movieId?" render={() => <MovieProfile />} />
-        <Route path="/dialogs" render={withSuspense(DialogsContainer)} />
-        <Route path="/login" render={() => <Login />} />
-        <Route path="/news" render={() => <News />} />
-        <Route path="/movies" render={() => <Movies />} />
-        <Route path="/musik" render={() => <Musik />} />
-        <Route path="/users" render={() => <UsersWithHooks />} />
-        <Route path="/settings" render={() => <Settings />} />
+        <Route path='/movieProfile/:movieId?' render={() => <MovieProfile />} />
+        <Route path='/dialogs' render={withSuspense(DialogsContainer)} />
+        <Route path='/login' render={() => <Login />} />
+        <Route path='/news' render={() => <News />} />
+        <Route path='/movies' render={() => <Movies />} />
+        <Route path='/musik' render={() => <Musik />} />
+        <Route path='/users' render={() => <UsersWithHooks />} />
+        <Route path='/settings' render={() => <Settings />} />
       </div>
     );
   }
@@ -65,11 +65,11 @@ const NextApp = compose(
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Provider store={store}>
         <NextApp />
       </Provider>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
