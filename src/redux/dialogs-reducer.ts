@@ -1,4 +1,9 @@
 const SEND_MESSAGE = "SEND-MESSAGE";
+export type InitialStateType = typeof initialState;
+type GetSendMessageActionType = {
+  type: typeof SEND_MESSAGE
+  newText: string
+}
 
 const initialState = {
   dialogs: [
@@ -19,7 +24,7 @@ const initialState = {
 };
 
 
-const dialodsReducer = (state = initialState, action) => {
+const dialodsReducer = (state = initialState, action: GetSendMessageActionType) => {
 
   
   
@@ -34,7 +39,7 @@ const dialodsReducer = (state = initialState, action) => {
   }
 };
 
-export const sendMessageCreator = (newText) => ({ type: SEND_MESSAGE, newText});
+export const sendMessageCreator = (newText:string) => ({ type:  SEND_MESSAGE, newText});
 
 
 export default dialodsReducer;
