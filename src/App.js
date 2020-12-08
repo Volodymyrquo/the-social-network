@@ -16,6 +16,7 @@ import {
   Musik,
   Users,
   Settings,
+  Profile,
 } from './components';
 
 const DialogsContainer = React.lazy(() =>
@@ -39,11 +40,11 @@ class StartApp extends React.Component {
       <div>
         <Header />
 
+        <Route path='/profile/:userId?' render={() => <Profile />} />
         <Route
-          path='/profile/:userId?'
+          path='/movieProfile/:movieId?'
           render={withSuspense(ProfileContainer)}
         />
-        <Route path='/movieProfile/:movieId?' render={() => <MovieProfile />} />
         <Route path='/dialogs' render={withSuspense(DialogsContainer)} />
         <Route path='/login' render={() => <Login />} />
         <Route path='/news' render={() => <News />} />
