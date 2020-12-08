@@ -8,7 +8,7 @@ import {
   CardContent,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { NavLink } from '../Header/node_modules/react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { photo } from '../../assets/utilities/photoIndexes';
 
 const useStyles = makeStyles((theme) => ({

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
-import { connect } from '../Dialogs/node_modules/react-redux';
+import { connect } from 'react-redux';
 import {
   follow,
   unfollow,

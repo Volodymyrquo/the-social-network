@@ -1,9 +1,9 @@
 import React from 'react';
 import { Paper, Typography } from '@material-ui/core';
 import LoginForm from './LoginForm';
-import { connect } from '../Dialogs/node_modules/react-redux';
+import { connect } from 'react-redux';
 import { getLoginUserData } from '../../redux/auth-reducer';
-import { Redirect } from '../Header/node_modules/react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 const Login = ({ isAuth, getLoginUserData }) => {
   const onSubmit = ({ email, password, rememberMe }) => {

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Container, Paper, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { compose } from 'redux';
-import { connect } from '../../Dialogs/node_modules/react-redux';
+import { connect } from 'react-redux';
 import { getMovieProfile } from '../../../redux/movies-reducer';
-import { withRouter } from '../../Header/node_modules/react-router-dom';
+import { withRouter } from 'react-router-dom';
 import withAuthRedirect from '../../../hoc/withAuthRedirect';
 import Actor from './Actor';
 

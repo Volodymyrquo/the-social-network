@@ -4,7 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Link from '@material-ui/core/Link';
-import { NavLink } from '../Header/node_modules/react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);

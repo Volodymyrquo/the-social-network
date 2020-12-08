@@ -12,8 +12,7 @@ import {
   Modal,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { NavLink, withRouter } from '../Header/node_modules/react-router-dom';
-import { photo } from '../../assets/utilities/photoIndexes';
+import { NavLink } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 
 const useStyles = makeStyles((theme) => ({

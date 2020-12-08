@@ -1,6 +1,6 @@
 import React from 'react';
-import { Redirect } from '../components/Header/node_modules/react-router-dom';
-import { connect } from '../components/Dialogs/node_modules/react-redux';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 let mapStateToProps = (state) => ({ isAuth: state.auth.isAuth });
 

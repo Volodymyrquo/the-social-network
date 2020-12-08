@@ -5,7 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Navbar from '../Navbar/Navbar';
-import { NavLink } from '../Login/node_modules/react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles((theme) => ({

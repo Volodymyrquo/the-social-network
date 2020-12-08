@@ -1,27 +1,22 @@
 import React from 'react';
 import './App.css';
-import Settings from './components/Settings/Settings';
-import News from './components/News/News';
-import Musik from './components/Musik/Musik';
-import {
-  BrowserRouter,
-  Route,
-  withRouter,
-} from './components/Header/node_modules/react-router-dom';
-import HeaderContainer from './components/Header/HeaderContainer';
-import Login from './components/Login/Login';
-import {
-  connect,
-  Provider,
-} from './components/Dialogs/node_modules/react-redux';
+import { BrowserRouter, Route, withRouter } from 'react-router-dom';
+import { connect, Provider } from 'react-redux';
 import { initializeApp } from './redux/app-reducer';
 import { compose } from 'redux';
 import Preloader from './components/common/preloader/Preloader';
-import Users from './components/Users/Users';
-import Movies from './components/Movies/Movies';
-import MovieProfile from './components/Movies/movieProfile/MovieProfile';
+import MovieProfile from './components/Movies/MovieProfile/MovieProfile';
 import store from './redux/redux-store';
 import { withSuspense } from './hoc/withSuspense';
+import {
+  Login,
+  Header,
+  News,
+  Movies,
+  Musik,
+  Users,
+  Settings,
+} from './components';
 
 const DialogsContainer = React.lazy(() =>
   import('./components/Dialogs/DialogsContainer')
@@ -42,7 +37,7 @@ class StartApp extends React.Component {
 
     return (
       <div>
-        <HeaderContainer />
+        <Header />
 
         <Route
           path='/profile/:userId?'
