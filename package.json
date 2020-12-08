@@ -9,6 +9,10 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^26.0.17",
+    "@types/node": "^14.14.10",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
     "axios": "^0.20.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -19,7 +23,8 @@
     "redux": "^4.0.5",
     "redux-form": "^8.3.6",
     "redux-form-material-ui": "^4.3.4",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "typescript": "^4.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
