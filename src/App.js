@@ -1,26 +1,33 @@
 import React from 'react';
 import './App.css';
-import Settings from './components/settings/Settings';
-import News from './components/news/News';
-import Musik from './components/musik/Musik';
-import { BrowserRouter, Route, withRouter } from 'react-router-dom';
-import HeaderContainer from './components/header/HeaderContainer';
-import Login from './components/login/Login';
-import { connect, Provider } from 'react-redux';
+import Settings from './components/Settings/Settings';
+import News from './components/News/News';
+import Musik from './components/Musik/Musik';
+import {
+  BrowserRouter,
+  Route,
+  withRouter,
+} from './components/Header/node_modules/react-router-dom';
+import HeaderContainer from './components/Header/HeaderContainer';
+import Login from './components/Login/Login';
+import {
+  connect,
+  Provider,
+} from './components/Dialogs/node_modules/react-redux';
 import { initializeApp } from './redux/app-reducer';
 import { compose } from 'redux';
 import Preloader from './components/common/preloader/Preloader';
-import UsersWithHooks from './components/users/UsersWithHooks';
-import Movies from './components/movies/Movies';
-import MovieProfile from './components/movies/movieProfile/MovieProfile';
+import UsersWithHooks from './components/Users/UsersWithHooks';
+import Movies from './components/Movies/Movies';
+import MovieProfile from './components/Movies/movieProfile/MovieProfile';
 import store from './redux/redux-store';
 import { withSuspense } from './hoc/withSuspense';
 
 const DialogsContainer = React.lazy(() =>
-  import('./components/dialogs/DialogsContainer')
+  import('./components/Dialogs/DialogsContainer')
 );
 const ProfileContainer = React.lazy(() =>
-  import('./components/profile/ProfileContainer')
+  import('./components/Profile/ProfileContainer')
 );
 
 class StartApp extends React.Component {

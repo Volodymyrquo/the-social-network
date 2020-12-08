@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Container, Paper, Grid, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { compose } from "redux";
-import { connect } from "react-redux";
-import { getMovieProfile } from "../../../redux/movies-reducer";
-import { withRouter } from "react-router-dom";
-import withAuthRedirect from "../../../hoc/withAuthRedirect";
-import Actor from "./Actor";
+import React, { useEffect, useState } from 'react';
+import { Container, Paper, Grid, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { compose } from 'redux';
+import { connect } from '../../Dialogs/node_modules/react-redux';
+import { getMovieProfile } from '../../../redux/movies-reducer';
+import { withRouter } from '../../Header/node_modules/react-router-dom';
+import withAuthRedirect from '../../../hoc/withAuthRedirect';
+import Actor from './Actor';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,23 +17,23 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   mainFeaturesPost: {
-    position: "relative",
+    position: 'relative',
     color: theme.palette.common.white,
     marginBottom: theme.spacing(4),
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
   },
   overlay: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     bottom: 0,
     right: 0,
     left: 0,
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
   },
   mainFeaturesPostContent: {
-    position: "relative",
+    position: 'relative',
     padding: theme.spacing(9),
   },
 }));
@@ -61,8 +61,7 @@ const MovieProfile = ({
   return (
     <Paper
       className={classes.mainFeaturesPost}
-      style={{ backgroundImage: `url(${image})`, marginTop: "60px" }}
-    >
+      style={{ backgroundImage: `url(${image})`, marginTop: '60px' }}>
       <Container fixed>
         <div className={classes.overlay} />
         <Grid container>
@@ -75,9 +74,8 @@ const MovieProfile = ({
       </Container>
       <Container
         className={classes.cardGrid}
-        maxWidth="md"
-        style={{ marginTop: "80px" }}
-      >
+        maxWidth='md'
+        style={{ marginTop: '80px' }}>
         <Grid container spacing={4}>
           {actorState.map((item) => (
             <Grid item key={item.id} xs={12} sm={6} md={3}>

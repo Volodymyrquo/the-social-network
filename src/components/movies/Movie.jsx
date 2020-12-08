@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Typography,
   Button,
@@ -10,15 +10,15 @@ import {
   Fade,
   Backdrop,
   Modal,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { NavLink, withRouter } from "react-router-dom";
-import { photo } from "../../assets/utilities/photoIndexes";
-import ReactPlayer from "react-player";
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { NavLink, withRouter } from '../Header/node_modules/react-router-dom';
+import { photo } from '../../assets/utilities/photoIndexes';
+import ReactPlayer from 'react-player';
 
 const useStyles = makeStyles((theme) => ({
   cardMedia: {
-    paddingTop: "100%",
+    paddingTop: '100%',
   },
   cardContent: {
     flexGrow: 1,
@@ -27,32 +27,30 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(4),
   },
   modal: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
+    border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(1, 2, 1),
   },
 }));
 
-const Movie = ({item, receiveVideoUrl, videoUrl }) => {
+const Movie = ({ item, receiveVideoUrl, videoUrl }) => {
   const classes = useStyles();
-   const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleOpen = (id) => {
     setOpen(true);
-    receiveVideoUrl(id)
+    receiveVideoUrl(id);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
- 
-
 
   return (
     <Grid item key={item.id} xs={12} sm={6} md={4}>
@@ -63,7 +61,7 @@ const Movie = ({item, receiveVideoUrl, videoUrl }) => {
           title={item.title}
         />
         <CardContent className={classes.cardContent}>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant='h6' gutterBottom>
             {item.fullTitle}
           </Typography>
           <Typography>{item.crew}</Typography>
@@ -72,24 +70,24 @@ const Movie = ({item, receiveVideoUrl, videoUrl }) => {
           <Button
             component={NavLink}
             to={`/movieProfile/${item.id}`}
-            size="small"
-            color="primary"
-            variant="contained"
-          >
+            size='small'
+            color='primary'
+            variant='contained'>
             About
           </Button>
-         <div>
+          <div>
             <Button
-              onClick={() => {handleOpen(item.id)}}
-              size="small"
-              color="secondary"
-              variant="contained"
-            >
+              onClick={() => {
+                handleOpen(item.id);
+              }}
+              size='small'
+              color='secondary'
+              variant='contained'>
               Trailer
             </Button>
             <Modal
-              aria-labelledby="transition-modal-title"
-              aria-describedby="transition-modal-description"
+              aria-labelledby='transition-modal-title'
+              aria-describedby='transition-modal-description'
               className={classes.modal}
               open={open}
               onClose={handleClose}
@@ -97,17 +95,21 @@ const Movie = ({item, receiveVideoUrl, videoUrl }) => {
               BackdropComponent={Backdrop}
               BackdropProps={{
                 timeout: 500,
-              }}
-            >
+              }}>
               <Fade in={open}>
                 <div className={classes.paper}>
-            <h2 id="transition-modal-title">{item.title}</h2>
-                  <ReactPlayer width="75vw" height="75vh" controls url={videoUrl} />
+                  <h2 id='transition-modal-title'>{item.title}</h2>
+                  <ReactPlayer
+                    width='75vw'
+                    height='75vh'
+                    controls
+                    url={videoUrl}
+                  />
                 </div>
               </Fade>
             </Modal>
           </div>
-      </CardActions>
+        </CardActions>
         {/*   <CardActions>
                 {item.followed ? (
                   <Button

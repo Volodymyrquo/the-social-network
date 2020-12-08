@@ -1,13 +1,13 @@
-import React from "react";
-import Users from "./Users";
-import { connect } from "react-redux";
+import React from 'react';
+import Users from './Users';
+import { connect } from '../Dialogs/node_modules/react-redux';
 import {
   follow,
   unfollow,
   setCurrentPage,
   receiveUsers,
-} from "../../redux/users-reducer";
-import Preloader from "../common/preloader/Preloader";
+} from '../../redux/users-reducer';
+import Preloader from '../common/preloader/Preloader';
 import {
   getUsers,
   getCurrentPage,
@@ -15,17 +15,17 @@ import {
   getTotalUsersCount,
   getIsFetching,
   getFollowingInProgress,
-} from "../../redux/users-selectors";
+} from '../../redux/users-selectors';
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    const {currentPage, pageSize} = this.props;
+    const { currentPage, pageSize } = this.props;
     this.props.receiveUsers(currentPage, pageSize);
   }
 
   onPageChanged = (pageNumber) => {
-    const pageSize = this.props.pageSize
-   // this.props.setCurrentPage(pageNumber);
+    const pageSize = this.props.pageSize;
+    // this.props.setCurrentPage(pageNumber);
     this.props.receiveUsers(pageNumber, pageSize);
   };
 
