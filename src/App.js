@@ -17,7 +17,7 @@ import {
 import { initializeApp } from './redux/app-reducer';
 import { compose } from 'redux';
 import Preloader from './components/common/preloader/Preloader';
-import UsersWithHooks from './components/Users/UsersWithHooks';
+import Users from './components/Users/Users';
 import Movies from './components/Movies/Movies';
 import MovieProfile from './components/Movies/movieProfile/MovieProfile';
 import store from './redux/redux-store';
@@ -54,7 +54,7 @@ class StartApp extends React.Component {
         <Route path='/news' render={() => <News />} />
         <Route path='/movies' render={() => <Movies />} />
         <Route path='/musik' render={() => <Musik />} />
-        <Route path='/users' render={() => <UsersWithHooks />} />
+        <Route path='/users' render={() => <Users />} />
         <Route path='/settings' render={() => <Settings />} />
       </div>
     );
