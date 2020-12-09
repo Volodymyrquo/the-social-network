@@ -1,1 +1,0 @@
-{"version":3,"sources":["ProfileInfo.module.css"],"names":[],"mappings":"AAAA,0BACI,WAAY,CACZ,gBAAiB,CACjB,cACJ","file":"3.955e37a9.chunk.css","sourcesContent":[".photo {\r\n    width: 200px;\r\n    border-radius: 5%;\r\n    margin-top: 5px;\r\n}\r\n\r\n"]}
