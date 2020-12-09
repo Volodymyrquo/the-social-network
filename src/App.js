@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Route, withRouter } from 'react-router-dom';
+import { HashRouter, Route, withRouter } from 'react-router-dom';
 import { connect, Provider } from 'react-redux';
 import { initializeApp } from './redux/app-reducer';
 import { compose } from 'redux';
@@ -16,7 +16,6 @@ import {
   Musik,
   Users,
   Settings,
-  Profile,
 } from './components';
 
 const DialogsContainer = React.lazy(() =>
@@ -40,11 +39,11 @@ class StartApp extends React.Component {
       <div>
         <Header />
 
-        <Route path='/profile/:userId?' render={() => <Profile />} />
         <Route
-          path='/movieProfile/:movieId?'
+          path='/profile/:userId?'
           render={withSuspense(ProfileContainer)}
         />
+        <Route path='/movieProfile/:movieId?' render={() => <MovieProfile />} />
         <Route path='/dialogs' render={withSuspense(DialogsContainer)} />
         <Route path='/login' render={() => <Login />} />
         <Route path='/news' render={() => <News />} />
@@ -68,11 +67,11 @@ const NextApp = compose(
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Provider store={store}>
         <NextApp />
       </Provider>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
