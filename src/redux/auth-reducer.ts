@@ -4,28 +4,23 @@ import { stopSubmit } from "redux-form";
 const SET_USER_DATA = "SET_USER_DATA";
 
 
-export type InitialStateType = {
-  email: number | null
-  id: string | null
-  login: string | null
-  isAuth: boolean
-  captchaUrl: string | null
-};
-const initialState:InitialStateType = {
-  email: null,
-  id: null,
-  login: null,
+export type InitialStateType = typeof initialState;
+
+const initialState = {
+  email: null as string|null,
+  id: null as number|null,
+  login: null as string|null,
   isAuth: false,
-  captchaUrl: null
+  captchaUrl: null as string|null
 
 };
-
 const authReducer = (state = initialState, action: any):InitialStateType => {
   switch (action.type) {
     case SET_USER_DATA:
       return {
         ...state,
         ...action.payload,
+
       };
     default:
       return state;

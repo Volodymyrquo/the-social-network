@@ -37,7 +37,7 @@ const dialodsReducer = (state = initialState, action: GetSendMessageCreatorActio
     case SEND_MESSAGE:
     return {
       ...state,
-      messages: [...state.messages, { id: 6, message: action.newText } ]
+      messages: [...state.messages, { id: 6, message: action.newText } ],
     }
     default:
       return state;
