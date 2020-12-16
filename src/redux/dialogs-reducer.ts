@@ -1,9 +1,15 @@
 const SEND_MESSAGE = "SEND-MESSAGE";
-export type InitialStateType = typeof initialState;
-type GetSendMessageActionType = {
-  type: typeof SEND_MESSAGE
-  newText: string
+type DialogType = {
+  id:number;
+  name:string;
+  photo:number;
 }
+type MessageType = {
+  id: number;
+  message: string;
+}
+export type InitialStateType = typeof initialState;
+
 
 const initialState = {
   dialogs: [
@@ -12,7 +18,7 @@ const initialState = {
     { id: 3, name: "Peter", photo: 201065 },
     { id: 4, name: "Jessica", photo: 159213 },
     { id: 5, name: "Paula", photo: 1252081 },
-  ],
+  ] as Array<DialogType>,
 
   messages: [
     { id: 1, message: "Hi, how are you" },
@@ -20,16 +26,15 @@ const initialState = {
     { id: 3, message: "Hi everyone" },
     { id: 4, message: "Yo yo yo" },
     { id: 5, message: "Uhooo" },
-  ],
+  ] as Array<MessageType>,
 };
 
 
-const dialodsReducer = (state = initialState, action: GetSendMessageActionType) => {
+const dialodsReducer = (state = initialState, action: GetSendMessageCreatorActionType): InitialStateType => {
 
-  
-  
+
   switch (action.type) {
-    case SEND_MESSAGE: 
+    case SEND_MESSAGE:
     return {
       ...state,
       messages: [...state.messages, { id: 6, message: action.newText } ]
@@ -38,8 +43,11 @@ const dialodsReducer = (state = initialState, action: GetSendMessageActionType) 
       return state;
   }
 };
-
-export const sendMessageCreator = (newText:string) => ({ type:  SEND_MESSAGE, newText});
+type GetSendMessageCreatorActionType = {
+  type: typeof SEND_MESSAGE
+  newText: string
+}
+export const sendMessageCreator = (newText:string):GetSendMessageCreatorActionType => ({ type:  SEND_MESSAGE, newText});
 
 
 export default dialodsReducer;
