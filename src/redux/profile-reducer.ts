@@ -1,5 +1,5 @@
-import { AnyARecord } from "dns";
 import { usersAPI, profileAPI } from "../api/api";
+import { PhotosType, PostType, ProfileType } from "../types/types";
 const ADD_POST = "profile_reducer/ADD_POST";
 const SET_USER_PROFILE = "profile_reducer/SET_USER_PROFILE";
 const SET_USER_STATUS = "profile_reducer/SET_USER_STATUS";
@@ -7,33 +7,6 @@ const DELETE_POST = "profile_reducer/DELETE_POST";
 const SET_PHOTOS_SUCCESS = "SET_PHOTOS_SUCCESS";
 
 
-type PostType = {
-  id:number;
-  post:string;
-  likesCount: number
-};
-type ContactsType = {
-  github:string;
-  vk: string;
-  facebook:string;
-  instagram:string;
-  twitter:string;
-  website:string;
-  youtube:string;
-  mainLink:string;
-}
-type PhotosType = {
-  small: null|string;
-  large: null|string;
-}
-type ProfileType = {
-  userId: number;
-  lookingForAJob: boolean;
-  lookingForAJobDescription: string;
-  fullName:string;
-  contacts:ContactsType;
-  photos: PhotosType;
-}
 
 const initialState = {
   posts: [
@@ -132,7 +105,7 @@ export const getUserStatus = (userId:number) => async (dispatch:any) => {
 
   dispatch(setUserStatus(status));
 };
-export const updateStatus = (status:strint) => async (dispatch:any) => {
+export const updateStatus = (status:string) => async (dispatch:any) => {
   const data = await profileAPI.updateStatus(status);
 
   if (!data.resultCode) {
